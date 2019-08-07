@@ -3,21 +3,31 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 
 Vue.use(Router)
+import Main from './views/ele/Main.vue'
+import StudentManage from './views/ele/StudentManage.vue'
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+  routes: [{
+    path: '/home',
+    name: 'home',
+    component: Home,
+    children: [{
+      path: 'main',
+      name: 'main',
+      component: Main
+    }, {
+      // 
+      path: 'StudentManage',
+      name: 'StudentManage',
+      component: StudentManage
+    }]
+  }, {
+    //重定向
+    path: '/',
+    redirect: () => {
+      // 方法接收 目标路由 作为参数
+      // return 重定向的 字符串路径/路径对象
+      return '/home/main'
     }
-  ]
+  }]
 })
