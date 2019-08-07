@@ -11,8 +11,8 @@
     <template>
       <!-- biaoge盒子不要删   里面的内容可以替换 -->
       <div class="biaoge">
-        <el-table :data="tableData" style="width: 100%" :row-class-name="tableRowClassName">
-          <el-table-column prop="date" label="日期" width="180"></el-table-column>
+        <el-table :data="tableData" stripe style="width: 100%">
+          <el-table-column prop="xuehao" label="日期" width="180"></el-table-column>
           <el-table-column prop="name" label="姓名" width="180"></el-table-column>
           <el-table-column prop="address" label="地址"></el-table-column>
         </el-table>
@@ -31,37 +31,37 @@ export default {
     return {
       tableData: [
         {
-          date: "2016-05-02",
+          xuehao: "190501",
           name: "王小虎",
           address: "上海市普陀区金沙江路 1518 弄"
         },
         {
-          date: "2016-05-04",
+          xuehao: "190502",
           name: "王小虎",
           address: "上海市普陀区金沙江路 1517 弄"
         },
         {
-          date: "2016-05-01",
+          xuehao: "190503",
           name: "王小虎",
           address: "上海市普陀区金沙江路 1519 弄"
         },
         {
-          date: "2016-05-03",
+          xuehao: "190504",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1516 弄"
+        },
+        {
+          xuehao: "190505",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1516 弄"
+        },
+        {
+          xuehao: "190506",
           name: "王小虎",
           address: "上海市普陀区金沙江路 1516 弄"
         }
       ]
     };
-  },
-  methods: {
-    tableRowClassName({ row, rowIndex }) {
-      if (rowIndex === 1) {
-        return "warning-row";
-      } else if (rowIndex === 3) {
-        return "success-row";
-      }
-      return "";
-    }
   }
 };
 </script>
