@@ -5,6 +5,8 @@ import Home from './views/Home.vue'
 Vue.use(Router)
 import Main from './views/ele/Main.vue'
 import StudentManage from './views/ele/StudentManage.vue'
+import AddTeacher from './views/ele/AddTeacher.vue'
+import TeacherManage from './views/ele/TeacherManage.vue'
 
 export default new Router({
   routes: [{
@@ -20,6 +22,16 @@ export default new Router({
       path: 'StudentManage',
       name: 'StudentManage',
       component: StudentManage
+    }, {
+      // 
+      path: 'AddTeacher',
+      name: 'AddTeacher',
+      component: AddTeacher
+    }, {
+      // 
+      path: 'TeacherManage',
+      name: 'TeacherManage',
+      component: TeacherManage
     }]
   }, {
     //重定向

@@ -16,8 +16,8 @@ import {
     MenuItemGroup,
     Table,
     TableColumn,
-    Pagination
-
+    Pagination,
+    Input
 
 
 } from "element-ui";
@@ -43,5 +43,7 @@ export default () => {
     Vue.use(Table);
     Vue.use(TableColumn);
 
-    Vue.use(Pagination)
+    Vue.use(Pagination);
+
+    Vue.use(Input);
 }
