@@ -1,10 +1,14 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Home from './views/Home.vue';
 
-Vue.use(Router)
-import Main from './views/ele/Main.vue'
-import StudentManage from './views/ele/StudentManage.vue'
+Vue.use(Router);
+import Main from './views/ele/Main.vue';
+// 学生查询
+import StudentManage from './views/ele/StudentManage.vue';
+// 添加学生信息
+import AddStudent from './views/ele/AddStudent.vue';
+
 
 export default new Router({
   routes: [{
@@ -20,6 +24,10 @@ export default new Router({
       path: 'StudentManage',
       name: 'StudentManage',
       component: StudentManage
+    }, {
+      path: 'AddStudent',
+      name: 'AddStudent',
+      component: AddStudent
     }]
   }, {
     //重定向

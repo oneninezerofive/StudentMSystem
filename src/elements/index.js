@@ -16,7 +16,12 @@ import {
     MenuItemGroup,
     Table,
     TableColumn,
-    Pagination
+    Pagination,
+    Form,
+    FormItem,
+    Input,
+    Select,
+    Option
 
 
 
@@ -44,4 +49,10 @@ export default () => {
     Vue.use(TableColumn);
 
     Vue.use(Pagination)
+    Vue.use(Form);
+    Vue.use(FormItem);
+    Vue.use(Input);
+    Vue.use(Select);
+    Vue.use(Option)
+
 }

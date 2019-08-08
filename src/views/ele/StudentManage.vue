@@ -6,62 +6,59 @@
       <span class="mianbaoqie">/</span>
       <span>学生信息查询</span>
     </div>
-
-    <!-- 表格区域 -->
-    <template>
-      <!-- biaoge盒子不要删   里面的内容可以替换 -->
-      <div class="biaoge">
-        <el-table :data="tableData" stripe style="width: 100%">
-          <el-table-column prop="xuehao" label="日期" width="180"></el-table-column>
-          <el-table-column prop="name" label="姓名" width="180"></el-table-column>
-          <el-table-column prop="address" label="地址"></el-table-column>
-        </el-table>
-      </div>
-    </template>
-
+    <div class="aaaa">
+      <!-- 表格区域 -->
+      <template>
+        <!-- biaoge盒子不要删   里面的内容可以替换 -->
+        <div class="biaoge">
+          <el-table
+            :data="tableData"
+            stripe
+            style="width: 100%"
+            max-height="600px"
+            :cell-style="cellstyle"
+          >
+            <el-table-column prop="xuehao" label="学号" width="180"></el-table-column>
+            <el-table-column prop="name" label="姓名" width="180"></el-table-column>
+            <el-table-column prop="homeaddr" label="地址" :show-overflow-tooltip="true"></el-table-column>
+            <el-table-column prop="tel" label="手机"></el-table-column>
+            <el-table-column prop="banji" label="班级"></el-table-column>
+            <el-table-column prop="xingbie" label="性别"></el-table-column>
+            <el-table-column type="selection" width="55"></el-table-column>
+          </el-table>
+        </div>
+      </template>
+    </div>
     <!-- 分页 -->
-    <el-pagination background layout="prev, pager, next" :total="100" class="pages"></el-pagination>
+    <el-pagination background layout="prev, pager, next" :total="pages" class="pages"></el-pagination>
   </el-main>
 </template>
 
 
 <script>
+// { name, xuehao, tel, homeaddr, banji, xingbie }
 export default {
   data() {
     return {
-      tableData: [
-        {
-          xuehao: "190501",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
-        },
-        {
-          xuehao: "190502",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1517 弄"
-        },
-        {
-          xuehao: "190503",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄"
-        },
-        {
-          xuehao: "190504",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1516 弄"
-        },
-        {
-          xuehao: "190505",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1516 弄"
-        },
-        {
-          xuehao: "190506",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1516 弄"
-        }
-      ]
+      tableData: [],
+      pages: 0
     };
+  },
+  async mounted() {
+    let data = await this.$axios("http://localhost:3000/getdata");
+    console.log(1);
+    console.log(data.data);
+    this.tableData = data.data;
+    this.pages = data.data.length;
+  },
+  methods: {
+    // 减少padding值 不会出现滚动条
+    cellstyle({ row, column, rowIndex, columnIndex }) {
+      let style = {
+        padding: "10px 5px"
+      };
+      return style;
+    }
   }
 };
 </script>
@@ -69,6 +66,13 @@ export default {
 
 
 <style>
+.aaaa {
+  height: 550px;
+  overflow-y: auto;
+}
+.el-main {
+  line-height: 20px;
+}
 .allheader {
   height: 60px;
   border-bottom: 2px solid #c4aeba;

@@ -3,7 +3,11 @@ import App from './App.vue'
 import router from './router'
 
 
+// 全局引入
+import axios from 'axios'
 
+// Vue继承axios
+Vue.prototype.$axios = axios
 
 Vue.config.productionTip = false
 // 引入vants组件

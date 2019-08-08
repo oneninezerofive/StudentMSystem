@@ -15,7 +15,7 @@
           <span>学生管理</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="1-1">添加学生</el-menu-item>
+          <el-menu-item index="AddStudent">添加学生</el-menu-item>
           <el-menu-item index="StudentManage">查询学生信息</el-menu-item>
           <el-menu-item index="1-3">班级查询</el-menu-item>
         </el-menu-item-group>

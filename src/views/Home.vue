@@ -19,7 +19,6 @@
         </el-aside>
         <!-- 路由 -->
         <router-view></router-view>
-        
       </el-container>
     </el-container>
   </div>
@@ -58,6 +57,7 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
+  
 }
 .stuLogo {
   float: left;
@@ -127,6 +127,7 @@ body {
   color: #333;
   text-align: center;
   line-height: 160px;
+  overflow-y: scroll;
 }
 </style>
 
