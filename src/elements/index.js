@@ -16,8 +16,15 @@ import {
     MenuItemGroup,
     Table,
     TableColumn,
-    Pagination
-    // 引入按钮
+    Pagination,
+    // 引入弹框
+    MessageBox,
+    //引入对话框
+    Dialog,
+    //引入输入框 表单
+    Input,
+    Form,
+    FormItem,
 
 
 
@@ -44,5 +51,14 @@ export default () => {
     Vue.use(Table);
     Vue.use(TableColumn);
 
-    Vue.use(Pagination)
+    Vue.use(Pagination);
+    Vue.use(Dialog);
+    Vue.use(Input);
+    Vue.use(Form);
+    Vue.use(FormItem);
+    Vue.prototype.$msgbox = MessageBox;
+    Vue.prototype.$alert = MessageBox.alert;
+    Vue.prototype.$confirm = MessageBox.confirm;
+    Vue.prototype.$prompt = MessageBox.prompt;
+    Vue.prototype.$notify = Notification;
 }

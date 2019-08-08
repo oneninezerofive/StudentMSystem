@@ -1,14 +1,4 @@
-<template>
-    <div id="header">
-        <!-- 头部 -->
-        <div class="allheader">
-            <h1>学生信息管理</h1>
-            <span class="mianbaoqie">/</span>
-            <span>学生信息查询</span>
-        </div>
 
-    </div>
-</template>
 <style>
 .allheader {
   height: 60px;
