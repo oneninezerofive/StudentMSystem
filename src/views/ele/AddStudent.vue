@@ -46,7 +46,7 @@
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">保存</el-button>
+        <el-button type="primary" @click="onSubmit();openFullScreen2()">保存</el-button>
       </el-form-item>
     </el-form>
   </el-main>
@@ -54,6 +54,8 @@
 
 
 <script>
+import { MessageBox } from "element-ui";
+
 export default {
   data() {
     return {
@@ -88,16 +90,53 @@ export default {
             banji: `${this.formLabelAlign.banji}`
           }
         });
-        // console.log(data);
-        let states = await data.data.insertedCount;
+
+        let states = await data.data.result.n;
         // console.log(states);
         if (states === 1) {
-          alert("添加成功");
+          this.formLabelAlign.name = "";
+          this.formLabelAlign.xuehao = "";
+          this.formLabelAlign.tel = "";
+          this.formLabelAlign.homeaddr = "";
+          this.formLabelAlign.xingbie = "";
+          this.formLabelAlign.banji = "";
+          // 编程式导航 会查询页
+          // this.$router.push("StudentManage");
+          // alert("添加成功");
+          MessageBox({
+            type: "info",
+            message: "学生信息添加成功"
+          });
         } else {
-          alert("添加失败");
+          // alert("添加失败");
+          MessageBox({
+            type: "info",
+            message: "学生信息添加失败"
+          });
         }
       } else {
         alert("请输入完整学生信息！");
+      }
+    },
+    // 加载覆盖面板
+    openFullScreen2() {
+      if (
+        this.formLabelAlign.name &&
+        this.formLabelAlign.xuehao &&
+        this.formLabelAlign.tel &&
+        this.formLabelAlign.homeaddr &&
+        this.formLabelAlign.xingbie &&
+        this.formLabelAlign.banji
+      ) {
+        const loading = this.$loading({
+          lock: true,
+          text: "正在插入数据库，请稍等",
+          spinner: "el-icon-loading",
+          background: "rgba(0, 0, 0, 0.7)"
+        });
+        setTimeout(() => {
+          loading.close();
+        }, 1000);
       }
     }
   }

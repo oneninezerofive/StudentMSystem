@@ -14,6 +14,7 @@ import {
     Menu,
     Submenu,
     MenuItemGroup,
+    // 表单
     Table,
     TableColumn,
     Pagination,
@@ -21,8 +22,13 @@ import {
     FormItem,
     Input,
     Select,
-    Option
-
+    Option,
+    MessageBox,
+    Message,
+    Popover,
+    Dialog,
+    //加载
+    Loading
 
 
 } from "element-ui";
@@ -53,6 +59,12 @@ export default () => {
     Vue.use(FormItem);
     Vue.use(Input);
     Vue.use(Select);
-    Vue.use(Option)
-
+    Vue.use(Option);
+    Vue.component(MessageBox);
+    Vue.component(MessageBox.confirm);
+    // Vue.component(MessageBox.confirm, MessageBox)
+    Vue.component(Message.name, Message);
+    Vue.use(Popover);
+    Vue.use(Dialog);
+    Vue.use(Loading);
 }

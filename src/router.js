@@ -8,7 +8,8 @@ import Main from './views/ele/Main.vue';
 import StudentManage from './views/ele/StudentManage.vue';
 // 添加学生信息
 import AddStudent from './views/ele/AddStudent.vue';
-
+//班级查询
+import Class from './views/ele/Class.vue';
 
 export default new Router({
   routes: [{
@@ -28,6 +29,10 @@ export default new Router({
       path: 'AddStudent',
       name: 'AddStudent',
       component: AddStudent
+    }, {
+      path: 'Class',
+      name: 'Class',
+      component: Class
     }]
   }, {
     //重定向

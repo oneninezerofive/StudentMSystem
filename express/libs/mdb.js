@@ -35,7 +35,9 @@ const find = (col, params) => {
         // 选中表
         const collection = db.collection(col);
         // Find some documents
-        collection.find(params).toArray(function (err, docs) {
+        collection.find(params).sort({
+            "_id": -1
+        }).toArray(function (err, docs) {
             // console.log("Found the following records");
             // console.log(docs)
             if (err) {
