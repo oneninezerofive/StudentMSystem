@@ -79,11 +79,17 @@ export default {
               method: "get",
               url: "http://localhost:3000/parans/adds",
               params: {
-              json: form
+              xuehao0: form.xuehao,
+              name0 : form.name,
+              parent_name0 : form.parent_name,
+              sex0 : form.sex,
+              job0 : form.job,
+              tel0: form.tel
               }
               });
               instance.confirmButtonLoading = true;
               instance.confirmButtonText = '执行中...';
+              alert('添加成功')
               setTimeout(() => {
                 done();
                 setTimeout(() => {

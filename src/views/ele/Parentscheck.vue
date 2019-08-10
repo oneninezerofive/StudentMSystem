@@ -12,8 +12,7 @@
       <!-- biaoge盒子不要删   里面的内容可以替换 -->
       <div id="parents">
         <div class="biaoge">
-          <el-table :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)"  
-          stripe style="width: 100%">
+          <el-table :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)" stripe style="width: 100%">
             <el-table-column type="index" :index="indexMethod"></el-table-column>
             <el-table-column label="学号" width="140">
               <template slot-scope="scope">
@@ -31,9 +30,9 @@
                 <el-button type="primary" icon="el-icon-edit" circle @click="FormVisible(scope.$index,scope.row)"></el-button>
                 <!-- 弹出框 -->
                 <el-dialog title="编辑信息" :visible.sync="dialogFormVisible">
-                  <el-form :model="form2" style="width:450px">
+                  <el-form :model="form2" style="width:450px;">
                     <el-form-item label="学号" :label-width="formLabelWidth">
-                      <el-input v-model="form2.xuehao" autocomplete="on"></el-input>
+                      <el-input v-model="form2.xuehao" autocomplete="off" readonly="readonly" ></el-input>
                     </el-form-item>
                     <el-form-item label="学生姓名" :label-width="formLabelWidth">
                       <el-input v-model="form2.name" autocomplete="on"></el-input>
@@ -54,7 +53,7 @@
                   </el-form>
                   <div slot="footer" class="dialog-footer">
                     <el-button @click="dialogFormVisible = false">取 消</el-button>
-                    <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+                    <el-button type="primary" @click=" Submit(scope.$index,form2)">确 定</el-button>
                   </div>
                 </el-dialog>
                 <!-- 删除按钮 -->
@@ -66,16 +65,7 @@
 
         </div>
         <!-- 分页 -->
-        <el-pagination align='right'
-         @size-change="handleSizeChange"
-          @current-change="handleCurrentChange" 
-          :current-page="currentPage"
-           :page-sizes="[1,5,10,20]" 
-           :page-size="pageSize" 
-           layout="total, sizes, prev, pager, next, jumper" 
-           :total="tableData.length"
-           class="pages"
-></el-pagination>
+        <el-pagination align='right' @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[1,5,10,20]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="tableData.length" class="pages"></el-pagination>
 
       </div>
 
@@ -96,8 +86,8 @@ export default {
     return {
       tableData: [],
       currentPage: 1, // 当前页码
-       total: 20, // 总条数
-       pageSize: 8 ,// 每页的数据条数
+      total: 20, // 总条数
+      pageSize: 8, // 每页的数据条数
 
       dialogFormVisible: false,
       form: {
@@ -108,7 +98,7 @@ export default {
         job: "",
         tel: ""
       },
-      form2:{
+      form2: {
         xuehao: "",
         name: "",
         parent_name: "",
@@ -133,12 +123,52 @@ export default {
       this.form2.sex = row.sex;
       this.form2.job = row.job;
       this.form2.tel = row.tel;
-      
-    
+    },
+    //修改提交
+    async Submit(index, form2) {
+      this.$confirm("确定数据完整，提交?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(async () => {
+          let data = await axios({
+        method: "get",
+        url: "http://localhost:3000/parans/updata",
+        params: {
+          xuehao0: form2.xuehao,
+          name0: form2.name,
+          parent_name0: form2.parent_name,
+          sex0: form2.sex,
+          job0: form2.job,
+          tel0: form2.tel
+        }
+          });
+          this.$message({
+            type: "success",
+            message: "提交成功!"
+            
+          });
+
+          // console.log(data.data.n);
+          // 如果修改成功，重新渲染
+          if (data.data.n === 1) {
+            let dat = await axios.get("http://localhost:3000/parans/par");
+            this.tableData = dat.data;
+            this.dialogFormVisible = false;
+          }
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消提交"
+          });
+        });
     },
 
     // 删除提示
     async del(index, row) {
+      // console.log(row[index].xuehao);
       this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -157,7 +187,7 @@ export default {
             message: "删除成功!"
           });
 
-          console.log(data.data.n);
+          // console.log(data.data.n);
           // 如果修改成功，重新渲染
           if (data.data.n === 1) {
             let dat = await axios.get("http://localhost:3000/parans/par");
@@ -177,25 +207,22 @@ export default {
       //  console.log(data);
     },
     //分页
-     handleSizeChange(val) {
-            console.log(`每页 ${val} 条`);
-            this.currentPage = 1;
-            this.pageSize = val;
-        },
-        handleCurrentChange(val) {
-            console.log(`当前页: ${val}`);
-            this.currentPage = val;
-        }
-    
-
-
-   
+    handleSizeChange(val) {
+      // console.log(`每页 ${val} 条`);
+      this.currentPage = 1;
+      this.pageSize = val;
+    },
+    handleCurrentChange(val) {
+      // console.log(`当前页: ${val}`);
+      this.currentPage = val;
+    }
   },
   created() {
     this.getNew();
   },
   activated() {
     this.del();
+    this.Submit();
   }
 };
 </script>
