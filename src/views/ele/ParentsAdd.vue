@@ -12,25 +12,25 @@
       <el-form ref="form" :model="form" label-width="100px" >
 
         <el-form-item label="学号" style="width:450px">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.xuehao"></el-input>
         </el-form-item>
         <el-form-item label="学生姓名" style="width:450px">
           <el-input v-model="form.name"></el-input>
         </el-form-item>
         <el-form-item label="监护人姓名" style="width:450px">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.parent_name"></el-input>
         </el-form-item>
         <el-form-item label="性别" style="width:450px">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.sex"></el-input>
         </el-form-item>
         <el-form-item label="工作" style="width:450px">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.job"></el-input>
         </el-form-item>
           <el-form-item label="联系电话" style="width:450px">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.tel"></el-input>
         </el-form-item>
         <el-form-item style="float: left;">
-          <el-button type="primary" @click="onSubmit">创建</el-button>
+          <el-button type="primary" @click="onSubmit(form)">创建</el-button>
           <el-button>取消</el-button>
         </el-form-item>
       </el-form>
@@ -41,6 +41,7 @@
 </template>
 <script>
 import Header from "../../components/Header.vue";
+import axios from "axios";
 export default {
   name: "ParentAdd",
   components: {
@@ -48,20 +49,19 @@ export default {
   },
   data() {
       return {
-        form: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
-        }
+       form: {
+        xuehao: "",
+        name: "",
+        parent_name: "",
+        sex: "",
+        job: "",
+        tel: ""
+      },
       }
   },
     methods: {
-      onSubmit() {
+      onSubmit(form) {
+        
         const h = this.$createElement;
         this.$msgbox({
           title: '提示',
@@ -74,6 +74,14 @@ export default {
           cancelButtonText: '取消',
           beforeClose: (action, instance, done) => {
             if (action === 'confirm') {
+              // console.log(form)
+               let data =  axios({
+              method: "get",
+              url: "http://localhost:3000/parans/adds",
+              params: {
+              json: form
+              }
+              });
               instance.confirmButtonLoading = true;
               instance.confirmButtonText = '执行中...';
               setTimeout(() => {

@@ -1,3 +1,6 @@
+<template>
+  
+</template>
 
 <style>
 .allheader {

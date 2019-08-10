@@ -25,6 +25,7 @@ import {
     Input,
     Form,
     FormItem,
+    Message,
 
 
 
@@ -56,6 +57,7 @@ export default () => {
     Vue.use(Input);
     Vue.use(Form);
     Vue.use(FormItem);
+    Vue.prototype.$message = Message
     Vue.prototype.$msgbox = MessageBox;
     Vue.prototype.$alert = MessageBox.alert;
     Vue.prototype.$confirm = MessageBox.confirm;
