@@ -17,7 +17,10 @@ import {
     Table,
     TableColumn,
     Pagination,
-    Input
+    Input,
+    Select,
+    Option ,
+    MessageBox
 
 
 } from "element-ui";
@@ -46,4 +49,7 @@ export default () => {
     Vue.use(Pagination);
 
     Vue.use(Input);
+    Vue.use(Select);
+    Vue.use(Option);
+    Vue.component(MessageBox.confirm);
 }
