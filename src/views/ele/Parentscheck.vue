@@ -12,7 +12,11 @@
       <!-- biaoge盒子不要删   里面的内容可以替换 -->
       <div id="parents">
         <div class="biaoge">
-          <el-table :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)" stripe style="width: 100%">
+          <el-table
+            :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)"
+            stripe
+            style="width: 100%"
+          >
             <el-table-column type="index" :index="indexMethod"></el-table-column>
             <el-table-column label="学号" width="140">
               <template slot-scope="scope">
@@ -27,12 +31,17 @@
             <el-table-column label="操作">
               <template slot-scope="scope">
                 <!-- 修改按钮 -->
-                <el-button type="primary" icon="el-icon-edit" circle @click="FormVisible(scope.$index,scope.row)"></el-button>
+                <el-button
+                  type="primary"
+                  icon="el-icon-edit"
+                  circle
+                  @click="FormVisible(scope.$index,scope.row)"
+                ></el-button>
                 <!-- 弹出框 -->
                 <el-dialog title="编辑信息" :visible.sync="dialogFormVisible">
                   <el-form :model="form2" style="width:450px;">
                     <el-form-item label="学号" :label-width="formLabelWidth">
-                      <el-input v-model="form2.xuehao" autocomplete="off" readonly="readonly" ></el-input>
+                      <el-input v-model="form2.xuehao" autocomplete="off" readonly="readonly"></el-input>
                     </el-form-item>
                     <el-form-item label="学生姓名" :label-width="formLabelWidth">
                       <el-input v-model="form2.name" autocomplete="on"></el-input>
@@ -49,7 +58,6 @@
                     <el-form-item label="联系电话" :label-width="formLabelWidth">
                       <el-input v-model="form2.tel" autocomplete="on"></el-input>
                     </el-form-item>
-
                   </el-form>
                   <div slot="footer" class="dialog-footer">
                     <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -57,22 +65,31 @@
                   </div>
                 </el-dialog>
                 <!-- 删除按钮 -->
-                <el-button type="danger" icon="el-icon-delete" circle @click="del(scope.$index, tableData)"></el-button>
+                <el-button
+                  type="danger"
+                  icon="el-icon-delete"
+                  circle
+                  @click="del(scope.$index, tableData)"
+                ></el-button>
               </template>
             </el-table-column>
-
           </el-table>
-
         </div>
         <!-- 分页 -->
-        <el-pagination align='right' @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[1,5,10,20]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="tableData.length" class="pages"></el-pagination>
-
+        <el-pagination
+          align="right"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage"
+          :page-sizes="[1,5,10,20]"
+          :page-size="pageSize"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="tableData.length"
+          class="pages"
+        ></el-pagination>
       </div>
-
     </template>
-
   </el-main>
-
 </template>
 <script>
 import Header from "../../components/Header.vue";
@@ -113,6 +130,7 @@ export default {
     //表格索引
     indexMethod(index) {
       return index * 1;
+      console.log(123);
     },
     //  表格修改
     FormVisible(index, row) {
@@ -133,21 +151,20 @@ export default {
       })
         .then(async () => {
           let data = await axios({
-        method: "get",
-        url: "http://localhost:3000/parans/updata",
-        params: {
-          xuehao0: form2.xuehao,
-          name0: form2.name,
-          parent_name0: form2.parent_name,
-          sex0: form2.sex,
-          job0: form2.job,
-          tel0: form2.tel
-        }
+            method: "get",
+            url: "http://localhost:3000/parans/updata",
+            params: {
+              xuehao0: form2.xuehao,
+              name0: form2.name,
+              parent_name0: form2.parent_name,
+              sex0: form2.sex,
+              job0: form2.job,
+              tel0: form2.tel
+            }
           });
           this.$message({
             type: "success",
             message: "提交成功!"
-            
           });
 
           // console.log(data.data.n);
