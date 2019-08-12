@@ -10,6 +10,10 @@ import StudentManage from './views/ele/StudentManage.vue';
 import AddStudent from './views/ele/AddStudent.vue';
 //班级查询
 import Class from './views/ele/Class.vue';
+// Vue.use(Router)
+
+import Parentscheck from './views/ele/Parentscheck.vue'
+import ParentAdd from './views/ele/ParentsAdd.vue'
 
 export default new Router({
   routes: [{
@@ -17,23 +21,35 @@ export default new Router({
     name: 'home',
     component: Home,
     children: [{
-      path: 'main',
-      name: 'main',
-      component: Main
-    }, {
-      // 
-      path: 'StudentManage',
-      name: 'StudentManage',
-      component: StudentManage
-    }, {
-      path: 'AddStudent',
-      name: 'AddStudent',
-      component: AddStudent
-    }, {
-      path: 'Class',
-      name: 'Class',
-      component: Class
-    }]
+        path: 'main',
+        name: 'main',
+        component: Main
+      }, {
+        // 
+        path: 'StudentManage',
+        name: 'StudentManage',
+        component: StudentManage
+      }, {
+        path: 'AddStudent',
+        name: 'AddStudent',
+        component: AddStudent
+      }, {
+        path: 'Class',
+        name: 'Class',
+        component: Class
+      }, {
+        // 
+        path: 'Parentscheck',
+        name: 'Parentscheck',
+        component: Parentscheck
+      },
+      {
+        // 
+        path: 'ParentAdd',
+        name: 'ParentAdd',
+        component: ParentAdd
+      }
+    ]
   }, {
     //重定向
     path: '/',

@@ -347,7 +347,7 @@ export default {
 .el-input--suffix {
   width: 280px;
 }
-.xingbie{
+.xingbie {
   width: 100%;
 }
 </style>

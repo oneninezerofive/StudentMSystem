@@ -1,8 +1,6 @@
 import Vue from "vue";
-import {
-    //   注册的组件名字
-    Popup
-} from "vant";
+//引入注册组件
+import { Popup} from "vant";
 
 
 

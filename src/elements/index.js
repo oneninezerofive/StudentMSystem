@@ -29,8 +29,7 @@ import {
     Dialog,
     //加载
     Loading
-
-
+    // 引入弹框
 } from "element-ui";
 
 
@@ -67,4 +66,15 @@ export default () => {
     Vue.use(Popover);
     Vue.use(Dialog);
     Vue.use(Loading);
+    Vue.use(Pagination);
+    Vue.use(Dialog);
+    Vue.use(Input);
+    Vue.use(Form);
+    Vue.use(FormItem);
+    Vue.prototype.$message = Message
+    Vue.prototype.$msgbox = MessageBox;
+    Vue.prototype.$alert = MessageBox.alert;
+    Vue.prototype.$confirm = MessageBox.confirm;
+    Vue.prototype.$prompt = MessageBox.prompt;
+    Vue.prototype.$notify = Notification;
 }
