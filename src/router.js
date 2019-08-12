@@ -15,6 +15,10 @@ import Class from './views/ele/Class.vue';
 import Parentscheck from './views/ele/Parentscheck.vue'
 import ParentAdd from './views/ele/ParentsAdd.vue'
 
+
+import AddTeacher from './views/ele/AddTeacher.vue'
+import TeacherManage from './views/ele/TeacherManage.vue'
+
 export default new Router({
   routes: [{
     path: '/home',
@@ -48,8 +52,19 @@ export default new Router({
         path: 'ParentAdd',
         name: 'ParentAdd',
         component: ParentAdd
+      }, {
+        // 
+        path: 'AddTeacher',
+        name: 'AddTeacher',
+        component: AddTeacher
+      }, {
+        // 
+        path: 'TeacherManage',
+        name: 'TeacherManage',
+        component: TeacherManage
       }
     ]
+
   }, {
     //重定向
     path: '/',

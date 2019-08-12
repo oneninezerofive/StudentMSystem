@@ -17,8 +17,8 @@
           <span>教师管理</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="2-1">添加教师</el-menu-item>
-          <el-menu-item index="2-2">查询教师信息</el-menu-item>
+          <el-menu-item index="AddTeacher">添加教师</el-menu-item>
+          <el-menu-item index="TeacherManage">查询教师信息</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
 

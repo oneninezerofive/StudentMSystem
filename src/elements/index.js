@@ -30,6 +30,7 @@ import {
     //加载
     Loading
     // 引入弹框
+
 } from "element-ui";
 
 
@@ -77,4 +78,5 @@ export default () => {
     Vue.prototype.$confirm = MessageBox.confirm;
     Vue.prototype.$prompt = MessageBox.prompt;
     Vue.prototype.$notify = Notification;
+
 }
