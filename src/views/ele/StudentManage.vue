@@ -186,8 +186,7 @@ export default {
     },
 
     async deleteRow(index, rows) {
-      // 点击删除发送请求
-      // 点击删除 就删除行
+      // 点击删除发送请求s点击删除 就删除行
       MessageBox.confirm("此操作将永久删除该学生信息, 是否继续?", "删除提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -255,6 +254,7 @@ export default {
         }
       });
       console.log(data.data.result);
+      console.log(1);
       if (data.data.result.n === 1) {
         // 数据变化的时候再执行一次渲染
         let data = await this.$axios("http://localhost:3000/getdata");
